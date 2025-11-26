@@ -1,0 +1,14 @@
+# Database files
+grades.db
+
+# Dependencies
+node_modules/
+package-lock.json
+
+# IDE
+.DS_Store
+.vscode/
+.idea/
+
+# Logs
+*.log
