@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>University Grade Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles/index.css">
+  <link rel="stylesheet" href="/src/styles/grid.css">
+  <link rel="stylesheet" href="/src/styles/overview.css">
+</head>
+
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <div class="header-content">
+        <h1 class="app-title">
+          <span class="title-icon">📚</span>
+          University Grade Tracker
+        </h1>
+        <div class="header-actions">
+          <button id="overviewBtn" class="btn btn-secondary">
+            <span class="btn-icon">📊</span>
+            Overview
+          </button>
+          <button id="newCourseBtn" class="btn btn-primary">
+            <span class="btn-icon">+</span>
+            New Course
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="main-content">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h2>Courses</h2>
+        </div>
+        <div id="courseList" class="course-list">
+          <!-- Courses will be dynamically added here -->
+        </div>
+      </aside>
+
+      <main class="content-area">
+        <div id="overviewView" class="overview-view" style="display: none;">
+          <!-- Overview content will be dynamically added here -->
+        </div>
+
+        <div id="welcomeScreen" class="welcome-screen">
+          <div class="welcome-content">
+            <div class="welcome-icon">🎓</div>
+            <h2>Welcome to Grade Tracker</h2>
+            <p>Select a course from the sidebar or create a new one to get started.</p>
+          </div>
+        </div>
+
+        <div id="courseView" class="course-view" style="display: none;">
+          <div class="course-header">
+            <div class="course-info">
+              <h2 id="courseName" class="course-name"></h2>
+              <div class="course-meta">
+                <span id="courseSemester" class="course-semester"></span>
+                <span id="courseCredits" class="course-credits"></span>
+              </div>
+            </div>
+            <div class="course-actions">
+              <button id="editCourseBtn" class="btn btn-secondary">Edit</button>
+              <button id="deleteCourseBtn" class="btn btn-danger">Delete</button>
+            </div>
+          </div>
+
+          <div class="tabs">
+            <button class="tab-btn active" data-tab="exercises">Exercises</button>
+            <button class="tab-btn" data-tab="exams">Exams</button>
+          </div>
+
+          <div class="tab-content">
+            <div id="exercisesTab" class="tab-pane active">
+              <div class="tab-header">
+                <h3>Exercise Points</h3>
+                <button id="addExerciseBtn" class="btn btn-small">+ Add Exercise</button>
+              </div>
+              <div id="exerciseGrid" class="grid-container"></div>
+              <div class="stats-panel">
+                <div class="stat-card">
+                  <div class="stat-label">Total Points</div>
+                  <div id="totalPoints" class="stat-value">0 / 0</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-label">Percentage</div>
+                  <div id="exercisePercentage" class="stat-value">0%</div>
+                </div>
+              </div>
+            </div>
+
+            <div id="examsTab" class="tab-pane">
+              <div class="tab-header">
+                <h3>Exam Grades</h3>
+                <button id="addExamBtn" class="btn btn-small">+ Add Exam</button>
+              </div>
+              <div id="examGrid" class="grid-container"></div>
+              <div class="stats-panel">
+                <div class="stat-card">
+                  <div class="stat-label">Average Grade</div>
+                  <div id="averageGrade" class="stat-value">-</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-label">Weighted Average</div>
+                  <div id="weightedAverage" class="stat-value">-</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Modal for adding/editing courses -->
+  <div id="courseModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="courseModalTitle">New Course</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="courseForm">
+          <div class="form-group">
+            <label for="courseNameInput">Course Name</label>
+            <input type="text" id="courseNameInput" required>
+          </div>
+          <div class="form-group">
+            <label for="courseSemesterInput">Semester</label>
+            <input type="text" id="courseSemesterInput" placeholder="e.g., WS 2024/25">
+          </div>
+          <div class="form-group">
+            <label for="courseCreditsInput">Credits</label>
+            <input type="number" id="courseCreditsInput" step="0.5" min="0">
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn btn-secondary modal-cancel">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
